@@ -1,11 +1,14 @@
 import { Router } from "express";
 import "./App.css";
+import Navbar from "./components/Navbar";
+import ThemeSelector from "./components/ThemeSelector";
 
 function App() {
     return (
         <div className="App">
             <BrawserRouter>
                 <Navbar />
+                <ThemeSelector/>
                 <Switch>
                     <Route exact path="/">
                         <Home />
