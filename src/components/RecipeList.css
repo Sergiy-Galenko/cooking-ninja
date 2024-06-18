@@ -1,0 +1,9 @@
+.resipe-list .card.dark {
+    background: #555;
+}
+
+.resipe-list .resipe-list p,
+.resipe-list .resipe-list h3,
+.resipe-list .resipe-list div {
+    color: #e4e4e4;
+}

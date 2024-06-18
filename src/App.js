@@ -4,11 +4,12 @@ import Navbar from "./components/Navbar";
 import ThemeSelector from "./components/ThemeSelector";
 
 function App() {
+    const { mode } = useTheme();
     return (
-        <div className="App">
+        <div className={`App ${mode}`}>
             <BrawserRouter>
                 <Navbar />
-                <ThemeSelector/>
+                <ThemeSelector />
                 <Switch>
                     <Route exact path="/">
                         <Home />
