@@ -10,26 +10,27 @@ export default function Home() {
 
     useEffect(() => {
         setIsPending(true);
-        projectFirebasestore
-            .collection("resipes")
-            .get()
-            .then(() => {
+
+        const unsub = projectFirebasestore.collection("recipes").onSnapshot(
+            (snapshot) => {
                 if (snapshot.empty) {
                     setError("No recipes to load");
                     setIsPending(false);
                 } else {
-                    let result = [];
-                    snapshot.docs.forEach((doc) =>
-                        result.push({ id: doc.id, ...doc.data() })
-                    );
-                    setData(result);
+                    let results = [];
+                    snapshot.docs.forEach((doc) => {
+                        result.push({ id: doc.id, ...doc.data() });
+                    });
+                    setData(results);
                     setIsPending(false);
                 }
-            })
-            .catch((err) => {
+            },
+            (err) => {
                 setError(err.message);
                 setIsPending(false);
-            });
+            }
+        );
+        return () => unsub();
     }, []);
 
     return (
